@@ -9,6 +9,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private float _maxTimeSeconds;
     [SerializeField] private GameObject _startGameUI;
     [SerializeField] private GameObject _gameOverUI;
+    [SerializeField] private TMP_Text _timeText;
+    [SerializeField] private TMP_Text comtext;
+    [SerializeField] private TMP_Text uncomtext;
+    [SerializeField] private TMP_Text raretext;
 
     // Add member variables to store references to all of the UI text.
 
@@ -35,19 +39,22 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         
-        if(_startGameUI==false){
-            Debug.Log("test");
+        if(_startGameUI.activeSelf==false && _gameOverUI.activeSelf==false){
+            _runGame=true;
+            if(_timeRemaining<=0){
+                StartGame();
+            }
+        }
+        else{
+            _runGame=false;
         }
         
-        if(_runGame==true){
-            Debug.Log("test");
-        }
-        
+        //Debug.Log(_timeRemaining);
         if (_runGame)
         {
             _timeRemaining -= Time.deltaTime;
             
-            // Update the game timer text.
+            _timeText.text = ("Time: " + _timeRemaining);
 
             if (_timeRemaining <= 0)
             {
@@ -61,12 +68,14 @@ public class GameController : MonoBehaviour
     {
         _startGameUI.SetActive(false);
         _gameOverUI.SetActive(false);
-        
-        SetGameEnabled(true);
 
         _timeRemaining = _maxTimeSeconds;
+
+        SetGameEnabled(true);
+        
         
         // Update the game timer text.
+        _timeText.text = ("Time: " + _timeRemaining);
     }
 
     // ------------------------------------------------------------------------
@@ -83,6 +92,9 @@ public class GameController : MonoBehaviour
         _gameOverUI.SetActive(true);
 
         // Update the final score text in the game over UI.
+        comtext.text = (_commonPoints+ " common");
+        uncomtext.text = (_uncommonPoints+ " uncommon");
+        raretext.text = (_rarePoints+ " rare");
     }
 
     // ------------------------------------------------------------------------
@@ -96,32 +108,48 @@ public class GameController : MonoBehaviour
 
     // ------------------------------------------------------------------------
     // Add a paramter to this method to represent the item's rarity.
-    public void CollectItem ()
+    public void CollectItem (string rarity)
     {
         // Using a SWITCH STATEMENT,
         // based on the item's rarity, update the appropriate points variable.
-        
+        switch (rarity){
+            case "common":
+            _commonPoints++;
+            break;
+            case "uncommon":
+            _uncommonPoints++;
+            break;
+            case "rare":
+            _rarePoints++;
+            break;
+        }
 
         UpdatePointsText();
     }
 
     // ------------------------------------------------------------------------
-    public void RemoveItem ()
+    public void RemoveItem (string rarity)
     {
         // Using a SWITCH STATEMENT,
         // based on the item's rarity, update the appropriate points variable.
-        
+        switch (rarity){
+            case "common":
+            _commonPoints--;
+            break;
+            case "uncommon":
+            _uncommonPoints--;
+            break;
+            case "rare":
+            _rarePoints--;
+            break;
+        }
         UpdatePointsText();
     }
 
     // ------------------------------------------------------------------------
     private void UpdatePointsText()
     {
-        // Update your points text.
+        //_timeText.text = (_timeRemaining);
     }
-    /*
-    public void On_Click(){
-        destroy
-    }
-    */
 }
+    

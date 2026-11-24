@@ -14,6 +14,8 @@ public class GameController : MonoBehaviour
     private int _commonPoints;
     private int _uncommonPoints;
     private int _rarePoints;
+    //public Vector2 mousePosition { get; };
+
 
     private float _timeRemaining;
     private bool _runGame;
@@ -29,6 +31,10 @@ public class GameController : MonoBehaviour
     // ------------------------------------------------------------------------
     private void Update()
     {
+        if(MouseDownEvent(true)){
+            StartGame();
+        }
+        
         if (_runGame)
         {
             _timeRemaining -= Time.deltaTime;

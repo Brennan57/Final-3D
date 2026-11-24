@@ -1,5 +1,10 @@
 # GDIM 31 Final: 3D
 ## Devlogs
+
+## In Class
+
+Made the enviornment for the game and researched mouse buttons and buttons so i can code for a later time.
+
 ### Milestone 1
 [Diagram](https://docs.google.com/drawings/d/1lyUvX9xFl_Ke62FUQqgeqB9A1h8SJJEp1YE0m3SWVpc/edit)
 TODO.

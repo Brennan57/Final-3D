@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class GameController : MonoBehaviour
 {
     [SerializeField] private Player _player;
@@ -28,11 +29,18 @@ public class GameController : MonoBehaviour
         UpdatePointsText();
     }
 
+
+
     // ------------------------------------------------------------------------
     private void Update()
     {
-        if(MouseDownEvent(true)){
-            StartGame();
+        
+        if(_startGameUI==false){
+            Debug.Log("test");
+        }
+        
+        if(_runGame==true){
+            Debug.Log("test");
         }
         
         if (_runGame)
@@ -111,4 +119,9 @@ public class GameController : MonoBehaviour
     {
         // Update your points text.
     }
+    /*
+    public void On_Click(){
+        destroy
+    }
+    */
 }

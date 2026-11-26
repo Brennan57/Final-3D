@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
         transform.Rotate(_playerRigidbody.transform.up, horizontal * _rotationSpeed * Time.deltaTime);
         transform.position+=vertical*_playerRigidbody.transform.forward*_moveSpeed*Time.deltaTime;
 
+        
+
         if(Input.GetKey(KeyCode.D)){
             transform.position+=_playerRigidbody.transform.right*_moveSpeed*Time.deltaTime;
             //Debug.Log("test");
@@ -58,6 +60,15 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.A)){
             transform.position-=_playerRigidbody.transform.right*_moveSpeed*Time.deltaTime;
             //Debug.Log("test");
+        }
+
+        //animation
+        if (Input.GetAxis("Vertical")!=0||Input.GetAxis("Horizontal")!=0||mouseY!=0||mouseX!=0||
+        Input.GetKey(KeyCode.D)||Input.GetKey(KeyCode.A)){
+            _animator.SetBool("walking",true);
+        }
+        else{
+            _animator.SetBool("walking",false);
         }
         
 
@@ -73,6 +84,7 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space)&&_isGrounded){
             //Debug.Log(_playerRigidbody.transform.position);
+            _animator.SetBool("jumping",true);
             _playerRigidbody.isKinematic = false;
             //_playerRigidbody.transform.position = new Vector3(50,10,25);
             
@@ -80,6 +92,9 @@ public class Player : MonoBehaviour
             _playerRigidbody.AddForce(Vector3.up * _jump, ForceMode.Impulse);
             _isGrounded=false;
             //Debug.Log(_playerRigidbody.transform.position);
+        }
+        if(!_isGrounded){
+            _animator.SetBool("air",true);
         }
     }
 
@@ -90,7 +105,9 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter(Collision col){
         if(col.gameObject.CompareTag("Ground")){
             _isGrounded=true;
-            //Debug.Log("ground");
+            _animator.SetBool("jumping",false);
+            _animator.SetBool("air",false);
+            Debug.Log("ground");
         }
     }
 }

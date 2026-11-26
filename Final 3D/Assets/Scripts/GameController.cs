@@ -39,12 +39,14 @@ public class GameController : MonoBehaviour
     private void Update()
     {
         if(_startGameUI.activeSelf==true){
-            _player.transform.position = new Vector3(50, 0, 25);
+            
+            _player.transform.position = new Vector3(50, 1, 25);
             // Rotate the cube by converting the angles into a quaternion.
             Quaternion target = Quaternion.Euler(0, 0, 0);
             // Dampen towards the target rotation
             _player.transform.rotation = Quaternion.Slerp(transform.rotation, target,  1);
             //_player.transform.rotation = new Vector3(0,0,0);
+            
         }
         if(_startGameUI.activeSelf==false && _gameOverUI.activeSelf==false){
             _runGame=true;
@@ -160,6 +162,7 @@ public class GameController : MonoBehaviour
     private void UpdatePointsText()
     {
         //_timeText.text = (_timeRemaining);
+        
     }
 }
     

@@ -9,11 +9,13 @@ public class Katamari : MonoBehaviour
     [SerializeField] private float _radiusGrowAmount = 1.0f;
     [SerializeField] private Collider _katamariCollider;
     [SerializeField] private Transform _sphereTransform;
+    [SerializeField] private GameObject player;
 
     // Add a member variable to represent a LIST of all of the Collectable 
     //      objects we've collected named _katamariCollection.
     // Then, uncomment the code in SetSpherePosition().
     public List<Collectable> _katamariCollection = new List<Collectable>();
+    public Vector3 newpos;
     // ------------------------------------------------------------------------
     // There's probably a member variable you need to declare in a built-in
     //      Unity method that runs once, before Update starts...
@@ -68,12 +70,15 @@ public class Katamari : MonoBehaviour
             _sphereTransform.localScale -= new Vector3(_radiusGrowAmount,_radiusGrowAmount,_radiusGrowAmount);
             SetSpherePosition();
             // Grab a RANDOM member of our katamari collection.
+            int random = Random.Range(0, _katamariCollection.Count);
             // Generate a position to drop it at- preferably by launching it far above the katamari sphere.
+            newpos = _sphereTransform.position+new Vector3(0,2,0);
             // Then, DROP that Collectable.
-            
+            _katamariCollection[random].Drop(newpos);
             // Finally, remove the entry from the _katamariCollection.
-            _katamariCollection.RemoveAt(Random.Range(0, _katamariCollection.Count));
+            _katamariCollection.RemoveAt(random);
             _unequipAudioSource.Play();
+
         }
         Debug.Log("Ball collided with: " + collision.gameObject.name);
     }

@@ -14,6 +14,8 @@ public class Collectable : MonoBehaviour
     private GameController _gameController;
     private BoxCollider trigger;
     [SerializeField] private Transform parent;
+    [SerializeField] private Transform ogparent;
+    [SerializeField] private Katamari kata;
 
     // ------------------------------------------------------------------------
     private void Start ()
@@ -32,6 +34,7 @@ public class Collectable : MonoBehaviour
         trigger.size = originalCollider.size * 1.2f;
         trigger.center = originalCollider.center;
         */
+        //ogparent = ;
     }
 
     // ------------------------------------------------------------------------
@@ -55,21 +58,24 @@ public class Collectable : MonoBehaviour
 
     // ------------------------------------------------------------------------
     // You might want to add parameters to this method.
-    public void Drop ()
+    public void Drop (Vector3 droppos)
     {
         // Reset this object's parent so it's no longer attached to the Katamari,
         //  and give it a new position ABOVE the Katamari sphere.
-        
+        //transform.SetParent(ogparent);
+        _rigidbody.transform.position = droppos;
 
         // Enable all of this object's colliders.
-        
+        for(int i = 0; i<_colliders.Length;i++){
+            _colliders[i].enabled = true;
+        }
 
         // This line sets the rigidbody to kinematic so it'll start using physics again.
         // (You don't need to change this.)
         _rigidbody.isKinematic = false;
 
         // Add a force to the rigidbody to make it fly upwards.
-
+        _rigidbody.AddForce(Vector3.up * 10, ForceMode.Impulse);
         // Tell the UI that we removed this item.
         
     }

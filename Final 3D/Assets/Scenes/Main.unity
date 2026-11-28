@@ -3117,7 +3117,9 @@ MonoBehaviour:
   _radiusGrowAmount: 0.2
   _katamariCollider: {fileID: 1852723657}
   _sphereTransform: {fileID: 1852723653}
+  player: {fileID: 6970421558965573327}
   _katamariCollection: []
+  newpos: {x: 0, y: 0, z: 0}
 --- !u!82 &1407490316
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3714,6 +3716,8 @@ MonoBehaviour:
   uncom: uncommon
   rare: rare
   parent: {fileID: 1407490310}
+  ogparent: {fileID: 1845438894}
+  kata: {fileID: 1407490315}
 --- !u!4 &1845438894
 Transform:
   m_ObjectHideFlags: 0

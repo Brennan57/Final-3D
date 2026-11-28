@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
     {
         if(_startGameUI.activeSelf==true){
             
-            _player.transform.position = new Vector3(50, 0, 25);
+            _player.transform.position = new Vector3(50, 0.5f, 25);
             // Rotate the cube by converting the angles into a quaternion.
             Quaternion target = Quaternion.Euler(0, 0, 0);
             // Dampen towards the target rotation

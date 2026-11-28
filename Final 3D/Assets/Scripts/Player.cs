@@ -107,7 +107,7 @@ public class Player : MonoBehaviour
             _isGrounded=true;
             _animator.SetBool("jumping",false);
             _animator.SetBool("air",false);
-            Debug.Log("ground");
+            //Debug.Log("ground");
         }
     }
 }

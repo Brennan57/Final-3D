@@ -54,6 +54,7 @@ public class NPC : MonoBehaviour
         _navAgent.enabled = false;
         enabled = false;
         _animator.SetBool("trapped", true);
+        Debug.Log("npc got captured");
     }
 
     // ------------------------------------------------------------------------

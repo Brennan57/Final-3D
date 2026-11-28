@@ -27,7 +27,11 @@ public class NPC : MonoBehaviour
             // Use the GetPositionAwayFromPlayer() method to set this object's
             //      NavMeshAgent destination.
             // If used properly, this will make the NPC run away from the player.
-            _navAgent.SetDestination(GetPositionAwayFromPlayer());
+            if (!_navAgent.hasPath||_navAgent.remainingDistance<=1.0f)
+            {
+                Vector3 destination = GetPositionAwayFromPlayer();
+                _navAgent.SetDestination(destination);
+            }
         }
 
         _animator.SetBool("running", _navAgent.velocity.magnitude > 0.0f);

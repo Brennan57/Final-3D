@@ -35,7 +35,7 @@ public class Katamari : MonoBehaviour
         //      actually exists, since we might collide with other kinds of objects too.
 
         if(otherCollider.bounds.extents.magnitude <= _katamariCollider.bounds.extents.magnitude && otherCollider!=null) {
-            Debug.Log("test");
+            //Debug.Log("test");
             // Grow the SPHERE OBJECT, which should be a CHILD of the Katamari object,
             //      by _radiusGrowAmount.
             // AFTER growing the sphere, call SetSpherePosition() to update the sphere's position.
@@ -80,7 +80,7 @@ public class Katamari : MonoBehaviour
             _unequipAudioSource.Play();
 
         }
-        Debug.Log("Ball collided with: " + collision.gameObject.name);
+        //Debug.Log("ball collided with " + collision.gameObject.name);
     }
 
     // ------------------------------------------------------------------------

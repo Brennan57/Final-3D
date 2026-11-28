@@ -27,6 +27,7 @@ public class NPC : MonoBehaviour
             // Use the GetPositionAwayFromPlayer() method to set this object's
             //      NavMeshAgent destination.
             // If used properly, this will make the NPC run away from the player.
+            _navAgent.SetDestination(GetPositionAwayFromPlayer());
         }
 
         _animator.SetBool("running", _navAgent.velocity.magnitude > 0.0f);
@@ -54,7 +55,7 @@ public class NPC : MonoBehaviour
         _navAgent.enabled = false;
         enabled = false;
         _animator.SetBool("trapped", true);
-        Debug.Log("npc got captured");
+        //Debug.Log("npc got captured");
     }
 
     // ------------------------------------------------------------------------

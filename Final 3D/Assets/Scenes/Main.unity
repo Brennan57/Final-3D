@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimer
   _player: {fileID: 7777780150010006646}
-  _maxTimeSeconds: 5
+  _maxTimeSeconds: 30
   _startGameUI: {fileID: 14032020}
   _gameOverUI: {fileID: 291995881}
   _timeText: {fileID: 695241566}
